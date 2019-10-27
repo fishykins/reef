@@ -32,7 +32,7 @@ module.exports = {
 
         var info = [];
         //Add all roles here
-        info.push(ManageRole("harvester", roleHarvester.run, creeps, 20));
+        info.push(ManageRole("harvester", roleHarvester.run, creeps, 5));
     },
 
     Section: class {
