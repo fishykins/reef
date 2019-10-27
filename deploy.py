@@ -35,3 +35,4 @@ def deployProject():
 #=========================#
 #if __name__ == "__main__":
 deployProject()
+exit

@@ -1,15 +1,21 @@
+
 var roleHarvester = require('role.harvester');
+var roleBuilder = require('role.builder');
+
 
 // Initializing a class definition
 
 function ManageRole(roleTitle, roleMethod, allCreeps, count) {
     var creeps = _.filter(allCreeps, (creep) => creep.memory.role == roleTitle);
-    //console.log(roleTitle + " count = " + creeps.length);
+    
+    var energy = Game.spawns.Spawn1.room.energyCapacityAvailable;
 
     if (creeps.length < count) {
         var newName = Game.spawns['Spawn1'].createCreep([WORK, CARRY, MOVE], undefined, {
             role: roleTitle
         });
+
+        //var newName = Game.spawns['spawn1'].createCustomCreep(energy, roleTitle);
 
         if (!(newName < 0)) {
             console.log('Spawning new ' + roleTitle + ': ' + newName);
@@ -33,6 +39,7 @@ module.exports = {
         var info = [];
         //Add all roles here
         info.push(ManageRole("harvester", roleHarvester.run, creeps, 5));
+        info.push(ManageRole("builder", roleBuilder.run, creeps, 2));
     },
 
     Section: class {

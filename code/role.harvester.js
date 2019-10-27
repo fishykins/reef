@@ -37,6 +37,7 @@ var roleHarvester = {
                 if (creep.room.controller) {
                     creep.moveTo(creep.room.controller);
                     creep.upgradeController(creep.room.controller);
+                    creep.say('🐟');
                     return;
                 }
             }
