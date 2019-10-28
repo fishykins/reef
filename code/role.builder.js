@@ -1,3 +1,5 @@
+var roleRepairer = require('role.repairer');
+
 var roleBuilder =
 {
     run: function(creep)
@@ -23,6 +25,9 @@ var roleBuilder =
                 {
                     creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
                 }
+            }
+            else {
+                roleRepairer.run(creep);
             }
 	    }
 	    else

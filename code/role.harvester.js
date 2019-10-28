@@ -1,3 +1,6 @@
+var mathf = require("util.mathf");
+
+
 var roleHarvester = {
     run: function (creep) {
 
@@ -6,7 +9,21 @@ var roleHarvester = {
         }
 
         if (creep.carry.energy < creep.carryCapacity && !creep.memory.loaded) {
-            var sources = creep.room.find(FIND_SOURCES);
+            var sources = _.filter(creep.room.find(FIND_SOURCES), (source) => source.energy > 0);
+
+            sources.sort(function (a, b) {
+                distA = mathf.sqrDistance(a.pos, creep.pos);
+                distB = mathf.sqrDistance(b.pos, creep.pos);
+
+                if (distA < distB) {
+                    return -1;
+                }
+                if (distB < distA) {
+                    return 1;
+                }
+                return 0;
+            });
+
             if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(sources[0], {
                     visualizePathStyle: {

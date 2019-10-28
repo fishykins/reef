@@ -52,15 +52,8 @@ module.exports = {
             Initialize();
         }
 
-        //Load memory
-        var room = getRoom(Memory.roomIndex);
-
-        if (room != undefined) {
-            mSection.run(room);
+        for (var roomName in Game.rooms) {
+            mSection.run(roomName);
         }
-
-        Memory.roomIndex++;
-        if (Memory.roomIndex >= Memory.rooms.length) Memory.roomIndex = 0;
-
     }
 }
